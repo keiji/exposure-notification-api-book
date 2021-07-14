@@ -1,0 +1,15 @@
+name: CI
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build distribution file
+      uses: takahashim/review-pdf-generator-action@master
+    - name: Upload PDF
+      uses: actions/upload-artifact@v2
+      with:
+        name: book_pdf
+        path: ./build/*.pdf
+        retention-days: 7
